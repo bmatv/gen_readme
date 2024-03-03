@@ -1,6 +1,5 @@
 
 import os
-import sys
 import re
 import click
 
@@ -62,7 +61,10 @@ def gen_readme(filepath):
             elif choice.lower() == 'y':
                 print('You chose to change')
                 print(f"Input the content for the {block_name} below.") # Press Ctrl-D when finished.
-                readme_dict[block_name] = get_single_line()
+                if block_name in ['description','installation', 'usage', 'test']:
+                    readme_dict[block_name] = get_multiline()
+                else:
+                    readme_dict[block_name] = get_single_line()
 
             else:
                 raise ValueError(f"invalid default answer: {choice}. Considering as No")
