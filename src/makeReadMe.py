@@ -33,14 +33,14 @@ def add_md_header(block,md_lvl):
     return ('#'*md_lvl + ' ' if md_lvl > 0 else '') + block
 
 @click.command()
-@click.option('--filepath', default=None, help='path to readme file')
+@click.option('-f', '--filepath', default=None, help='path to readme file')
 def gen_readme(filepath):
     """A simple utility to interactively generate a README.md file"""
     # TODO get_multiline to be used, through dict?
     # TODO change some instances of print to logging
     # TODO skip empty blocks, e.g. if project_name == '' -> skip project_name ?
 
-    readme_path = os.path.join(os.curdir,'README.md')
+    readme_path = os.path.join(os.curdir,'README.md') if filepath is None else filepath
     if os.path.exists(readme_path):
         print('File found. Reading...')
         with open(readme_path,'r') as file:
