@@ -54,21 +54,21 @@ def gen_readme(filepath):
 
     for block_name in readme_dict.keys():
         if readme_dict[block_name] is not None:
-            print("Input already present in the file:", readme_dict[block_name])
+            print(f"Input for the '{block_name}' already present in the file:\n{'-'*80}\n{readme_dict[block_name]}\n{'-'*80}")
             choice = input("Would you like to change?(y/[n]):")
             if choice.lower() == '' or choice.lower() == 'n':
-                print('You chose not to change')
+                continue
             elif choice.lower() == 'y':
-                print('You chose to change')
-                print(f"Input the content for the {block_name} below.") # Press Ctrl-D when finished.
+                print(f"Input the content for the {block_name} below.") # 
                 if block_name in ['description','installation', 'usage', 'test']:
+                    print("Input is multiline. Press Enter to create a newline and Ctrl-D right after when finished.")
                     readme_dict[block_name] = get_multiline()
                 else:
                     readme_dict[block_name] = get_single_line()
 
             else:
-                raise ValueError(f"invalid default answer: {choice}. Considering as No")
-        else:
+                print(f"invalid default answer: {choice}. Considering as No") # Used to be raise ValueError
+        else: 
             print(f"Input the content for the {block_name} below.") # Press Ctrl-D when finished.
             readme_dict[block_name] = get_single_line()
 
