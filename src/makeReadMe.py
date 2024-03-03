@@ -2,7 +2,7 @@
 import os
 import click
 
-from .aux import *
+from aux import *
 
 @click.command()
 @click.option('-f', '--filepath', default=None, help='path to readme file')
