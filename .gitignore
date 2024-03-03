@@ -3,5 +3,9 @@ __pycache__/
 *.py[cod]
 
 # Distribution / packaging
+build/
 *.egg-info/
 *.egg
+
+# Unit test / coverage reports
+.pytest_cache/
