@@ -2,6 +2,7 @@
 import os
 import sys
 import re
+import click
 
 re_expression = re.compile(r'''
     \#{1}\sWelcome\sto\s(?P<project_name>.+)!\n{2}
@@ -14,7 +15,6 @@ re_expression = re.compile(r'''
     \#{1}\sUsage.*\n(?P<usage>(?:.+\n)+)\n{1}
     \#{1}\sHow\sto\stest.*\n(?P<test>(?:.+\n)+)\n{1}
     ''', re.VERBOSE)
-
 
 def get_single_line():
     return input()
@@ -33,11 +33,11 @@ def get_multiline():
 def add_md_header(block,md_lvl):
     return ('#'*md_lvl + ' ' if md_lvl > 0 else '') + block
 
-def gen_readme():
-    # TODO add help option via argparse
-    # TODO add pytest example. Could test add_md_header function
+@click.command()
+@click.option('--filepath', default=None, help='path to readme file')
+def gen_readme(filepath):
+    """A simple utility to interactively generate a README.md file"""
     # TODO get_multiline to be used, through dict?
-    # TODO add an option for custom README file name via argparse
     # TODO change some instances of print to logging
     # TODO skip empty blocks, e.g. if project_name == '' -> skip project_name ?
 
