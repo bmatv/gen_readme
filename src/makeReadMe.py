@@ -34,8 +34,9 @@ def add_md_header(block,md_lvl):
     return ('#'*md_lvl + ' ' if md_lvl > 0 else '') + block
 
 def gen_readme():
+    # TODO add help option via argparse
     # TODO get_multiline to be used, through dict?
-    # TODO add an option for custom README file name
+    # TODO add an option for custom README file name via argparse
     # TODO change some instances of print to logging
     # TODO skip empty blocks, e.g. if project_name == '' -> skip project_name ?
     readme_path = os.path.join(os.curdir,'README.md')
