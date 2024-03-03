@@ -52,7 +52,7 @@ def gen_readme(filepath: str):
                     readme_dict[block_name] = get_single_line()
 
             else:
-                if choice.lower() != "" or choice.lower() != "n":
+                if choice.lower() != "" and choice.lower() != "n":
                     print(
                         f"invalid default answer: {choice}. Considering as No"
                     )  # Used to be raise ValueError
