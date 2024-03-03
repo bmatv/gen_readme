@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genreadme"
+version = "2024.03.03"
+dependencies = [
+  "click",
+]
+requires-python = ">=3.8"
+authors = [
+  {name = "Bogdan Matviichuk", email = "hammermolotok@gmail.com"},
+]
+maintainers = [
+  {name = "Bogdan Matviichuk", email = "hammermolotok@gmail.com"}
+]
+description = "A utility for interactive README.md generation"
+readme = "README.md"
+keywords = ["README",]
+classifiers = [
+  "Development Status :: Alpha",
+  "Programming Language :: Python"
+]
+
+
+[project.urls]
+Repository = "https://github.com/bmatv/gen_readme"
+
+[project.scripts]
+genreadme = "makeReadMe:gen_readme"
+
+# [project.gui-scripts]
+# spam-gui = "spam:main_gui"
+
+# [project.entry-points."spam.magical"]
+# genreadme = "src.makeReadMe:gen_readme"
+# tomatoes = "spam:main_tomatoes"
