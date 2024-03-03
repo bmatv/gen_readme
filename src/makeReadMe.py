@@ -34,6 +34,7 @@ def add_md_header(block,md_lvl):
     return ('#'*md_lvl + ' ' if md_lvl > 0 else '') + block
 
 def gen_readme():
+    # TODO get_multiline to be used, through dict?
     # TODO add an option for custom README file name
     # TODO change some instances of print to logging
     # TODO skip empty blocks, e.g. if project_name == '' -> skip project_name ?
@@ -57,11 +58,14 @@ def gen_readme():
                 print('You chose not to change')
             elif choice.lower() == 'y':
                 print('You chose to change')
-                readme_dict[block_name] = get_single_line()
                 print(f"Input the content for the {block_name} below.") # Press Ctrl-D when finished.
+                readme_dict[block_name] = get_single_line()
 
             else:
                 raise ValueError(f"invalid default answer: {choice}. Considering as No")
+        else:
+            print(f"Input the content for the {block_name} below.") # Press Ctrl-D when finished.
+            readme_dict[block_name] = get_single_line()
 
 
 
