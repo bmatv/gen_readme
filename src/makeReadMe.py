@@ -2,7 +2,7 @@ import os
 
 import click
 
-from aux import *
+import aux
 
 
 @click.command()
@@ -26,7 +26,7 @@ def gen_readme(filepath: str, skip_empty: bool):
         with open(readme_path, "r") as file:
             README_FILE = file.read()
 
-        readme_dict = RE_README.search(README_FILE).groupdict()
+        readme_dict = aux.RE_README.search(README_FILE).groupdict()
 
     else:
         readme_dict = dict.fromkeys(
@@ -55,9 +55,9 @@ def gen_readme(filepath: str, skip_empty: bool):
                     print(
                         "Input is multiline. Press Enter to create a newline and Ctrl-D right after when finished."
                     )
-                    readme_dict[block_name] = get_multiline()
+                    readme_dict[block_name] = aux.get_multiline()
                 else:
-                    readme_dict[block_name] = get_single_line()
+                    readme_dict[block_name] = aux.get_single_line()
 
             else:
                 if choice.lower() != "" and choice.lower() != "n":
@@ -67,15 +67,15 @@ def gen_readme(filepath: str, skip_empty: bool):
                 continue
         else:
             print(f"Input the content for the {block_name} below.")
-            readme_dict[block_name] = get_single_line()
+            readme_dict[block_name] = aux.get_single_line()
 
-    style_dict = gen_style_dict(readme_dict)
-    if skip_empty: pop_empty(readme_dict, style_dict)
+    style_dict = aux.gen_style_dict(readme_dict)
+    if skip_empty: aux.pop_empty(readme_dict, style_dict)
 
     buf = []
     for entry in style_dict:
         buf.append(
-            add_md_header(
+            aux.add_md_header(
                 block=style_dict[entry]["f_line"], md_lvl=style_dict[entry]["md_lvl"]
             )
         )
