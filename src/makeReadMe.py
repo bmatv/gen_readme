@@ -7,7 +7,15 @@ from aux import *
 
 @click.command()
 @click.option("-f", "--filepath", default=None, help="path to readme file")
-def gen_readme(filepath: str):
+@click.option(
+    "-s",
+    "--skip-empty",
+    is_flag=True,
+    show_default=True,
+    default=False,
+    help="skip blocks if no info was provided",
+)
+def gen_readme(filepath: str, skip_empty: bool):
     """A simple utility to interactively generate a README.md file"""
     # TODO change some instances of print to logging
     # TODO skip empty blocks, e.g. if project_name == '' -> skip project_name ?
@@ -62,6 +70,7 @@ def gen_readme(filepath: str):
             readme_dict[block_name] = get_single_line()
 
     style_dict = gen_style_dict(readme_dict)
+    if skip_empty: pop_empty(readme_dict, style_dict)
 
     buf = []
     for entry in style_dict:

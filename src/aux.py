@@ -48,3 +48,8 @@ def gen_style_dict(readme_dict: dict) -> dict:
         'test':         {'f_line':f"How to test\n{readme_dict['test']}",'md_lvl' : 1}
     }
     return style_dict
+
+def pop_empty(input_dict: dict, formatted_dict: dict):
+    for key in input_dict:
+        if input_dict[key] is None:
+            formatted_dict.pop(key)
