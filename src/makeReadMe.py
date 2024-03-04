@@ -17,6 +17,8 @@ import aux
 )
 def gen_readme(filepath: str, skip_empty: bool):
     """A simple utility to interactively generate a README.md file"""
+    # TODO update regex for the case of missing block
+    # BUG in and out READMEs are different on the number of \n in case of multiline
     # TODO change some instances of print to logging
     # TODO skip empty blocks, e.g. if project_name == '' -> skip project_name ?
 
